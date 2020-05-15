@@ -9,6 +9,7 @@ class Users extends Component {
 
   async componentDidMount() { //Fetches the data from the api
     const url = 'https://randomuser.me/api/';
+
     fetch(url)
     .then(response => response.json())    // one extra step
     .then(data => {
@@ -16,7 +17,8 @@ class Users extends Component {
       this.setState({results: data})
     })
     .catch(error => console.error(error));
-    console.log(process.env.REACT_APP_APIKEY)
+
+    //console.log(process.env.REACT_APP_AUTHDOMAIN)
   }
 
   render() {
