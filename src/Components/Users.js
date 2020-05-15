@@ -16,6 +16,7 @@ class Users extends Component {
       this.setState({results: data})
     })
     .catch(error => console.error(error));
+    console.log(process.env.REACT_APP_APIKEY)
   }
 
   render() {
