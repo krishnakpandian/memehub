@@ -1,46 +1,37 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {BrowserRouter as Router, Switch,Route,Link} from "react-router";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Users from './Components/Users';
-import Routing from './Components/Routing';
+import About from './Components/About';
+import Join from './Components/Join';
+
 
 function App() {
   return (
+
     <div className="App">
       <header className="App-header">
-          Alex Ngo
+        Alex Ngo
       </header>
       <Router>
-        <div>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/join">About</Link>
-              </li>
-              <li>
-                <Link to="/users">Users</Link>
-              </li>
-            </ul>
-          </nav>
-  
-          {/* A <Switch> looks through its children <Route>s and
-              renders the first one that matches the current URL. */}
-          <Switch>
-            <Route path="/about">
-              <About />
-            </Route>
-            <Route path="/users">
-              <Users />
-            </Route>
-            <Route path="/">
-              <Home />
-            </Route>
-          </Switch>
-        </div>
+        <Link to="/">Home</Link>
+
+        <Link to="/about">About</Link>
+
+        <Link to="/users">Users</Link>
+
+        <Switch>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/users">
+            <Users />
+          </Route>
+          <Route path="/">
+            <Join />
+          </Route>
+        </Switch>
       </Router>
     </div>
   );

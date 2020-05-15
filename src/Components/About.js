@@ -1,13 +1,13 @@
 import React, {Component} from 'react'
 
-class Join extends Component {
+class About extends Component {
     render() {
       return (
         <div>
-          Welcome to Join!
+          Welcome to About!
         </div>
       );
     }
   }
   
-export default Join; 
+export default About; 
