@@ -9,17 +9,13 @@ import Join from './Components/Join';
 
 function App() {
   return (
-
     <div className="App">
-      <header className="App-header">
-        Alex Ngo
-      </header>
       <Router>
+      <header>
         <Link to="/">Home</Link>
-
         <Link to="/about">About</Link>
-
         <Link to="/users">Users</Link>
+      </header>
 
         <Switch>
           <Route path="/about">
