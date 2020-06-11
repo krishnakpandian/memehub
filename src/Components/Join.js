@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import * as firebase from 'firebase';
 import firestore from './Firestore';
 
-
+let firebaseCommand = require('./Firestore.js')
 
 class Join extends Component {
     constructor(props) {
@@ -11,9 +11,11 @@ class Join extends Component {
             fname: '',
             lname: '',
             email: '',
+            username: '',
             fname_error: '',
             lname_error: '',
-            email_error: ''
+            email_error: '',
+            username_error: ''
         }
     }
     addUser = e => {
@@ -72,11 +74,14 @@ class Join extends Component {
             this.setState({email_error: "Invalid Email"});
             valid = false;
         }
-
+        if (!this.state.username.match(alphaNumeric) || this.state.username.length > 50 || !this.state.username){
+            this.setState({username_error: "Invalid Username"});
+            valid = false;
+        }
         console.log(this.state.email_error);
 
         if (valid){
-            this.addUser();
+            console.log(firebaseCommand.getUser())
             alert('Success');
         }
         else {
@@ -126,6 +131,19 @@ class Join extends Component {
                         maxlength="100"
                     />
                 </label>
+                <label>
+                Username
+                {this.state.username_error}
+                <input
+                    class="medium"
+                    type="text"
+                    name="username"
+                    value={this.state.username}
+                    onChange={this.handleChange.bind(this)}
+                    placeholder="username"
+                    maxlength="100"
+                />
+            </label>
             <button className="Submit" onClick={this.submit}>Submit App</button>
             </React.Fragment>
         );

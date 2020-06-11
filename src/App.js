@@ -5,18 +5,15 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Users from './Components/Users';
 import About from './Components/About';
 import Join from './Components/Join';
-
+import Header from './Components/Header';
+import Footer from './Components/Footer';
+import Memes from './Components/Meme';
 
 function App() {
   return (
     <div className="App">
       <Router>
-      <header>
-        <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
-        <Link to="/users">Users</Link>
-      </header>
-
+        <Header/>
         <Switch>
           <Route path="/about">
             <About />
@@ -24,11 +21,15 @@ function App() {
           <Route path="/users">
             <Users />
           </Route>
+          <Route path="/memes">
+            <Memes />
+          </Route>
           <Route path="/">
             <Join />
           </Route>
         </Switch>
       </Router>
+      <Footer/>
     </div>
   );
 }
