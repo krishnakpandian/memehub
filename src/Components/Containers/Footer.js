@@ -12,16 +12,16 @@ class Footer extends Component {
             <div>
               <a href="mailto:" target="_blank" rel="noopener noreferrer"><span>Krishna</span></a>
             
-              <a href="#" class="fa fa-linkedin"></a>
-              <a href="#" class="fa fa-facebook"></a>
-              <a href="#" class="fa fa-twitter"></a>
+              <a href="https://www.linkedin.com/" class="fa fa-linkedin"> </a>
+              <a href="https://www.facebook.com/" class="fa fa-facebook"> </a>
+              <a href="https://twitter.com/" class="fa fa-twitter"> </a>
             </div>
             <div>
               <a href="mailto:" target="_blank" rel="noopener noreferrer"><span>Alex</span></a>
 
-              <a href="#" class="fa fa-linkedin"></a>
-              <a href="#" class="fa fa-facebook"></a>
-              <a href="#" class="fa fa-twitter"></a>
+              <a href="https://www.linkedin.com/" class="fa fa-linkedin"> </a>
+              <a href="https://www.facebook.com/" class="fa fa-facebook"> </a>
+              <a href="https://twitter.com/" class="fa fa-twitter"> </a>
             </div>
             <p>  © 2020 ??? inc. All rights reserved.</p>
         </footer>
