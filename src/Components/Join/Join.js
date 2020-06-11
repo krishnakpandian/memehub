@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as firebase from 'firebase';
 import firestore from '../Database/Firestore';
+import './Join.css';
 
 let firebaseCommand = require('../Database/Firestore.js')
 
