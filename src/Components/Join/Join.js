@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import * as firebase from 'firebase';
-import firestore from './Firestore';
+import firestore from '../Database/Firestore';
 
-let firebaseCommand = require('./Firestore.js')
+let firebaseCommand = require('../Database/Firestore.js')
 
 class Join extends Component {
     constructor(props) {

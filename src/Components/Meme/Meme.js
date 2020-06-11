@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../index.css';
+import '../../index.css';
 import { render } from '@testing-library/react';
 
 class Meme extends Component {

@@ -2,12 +2,12 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Users from './Components/Users';
-import About from './Components/About';
-import Join from './Components/Join';
-import Header from './Components/Header';
-import Footer from './Components/Footer';
-import Memes from './Components/Meme';
+import Users from './Components/Users/Users';
+import About from './Components/About/About';
+import Join from './Components/Join/Join';
+import Header from './Components/Containers/Header';
+import Footer from './Components/Containers/Footer';
+import Memes from './Components/Meme/Meme';
 
 function App() {
   return (
