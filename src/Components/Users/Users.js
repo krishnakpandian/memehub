@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../../index.css';
+import './Users.css';
 import { render } from '@testing-library/react';
 
 class Users extends Component {
