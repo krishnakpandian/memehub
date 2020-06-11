@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as firebase from 'firebase';
 import firestore from '../Database/Firestore';
-import './Join.css';
+import './Join.scss';
 
 let firebaseCommand = require('../Database/Firestore.js');
 
@@ -68,6 +68,7 @@ class Join extends Component {
     render() {
         return (
             <React.Fragment>
+            <div class="join-container">
                 <label>
                     First Name
                     {this.state.fname_error}
@@ -121,6 +122,7 @@ class Join extends Component {
                 />
             </label>
             <button className="Submit" onClick={this.submit}>Submit App</button>
+            </div>
             </React.Fragment>
         );
     }
