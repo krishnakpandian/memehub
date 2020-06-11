@@ -3,7 +3,7 @@ import * as firebase from 'firebase';
 import firestore from '../Database/Firestore';
 import './Join.css';
 
-let firebaseCommand = require('../Database/Firestore.js')
+let firebaseCommand = require('../Database/Firestore.js');
 
 class Join extends Component {
     constructor(props) {
@@ -19,24 +19,6 @@ class Join extends Component {
             username_error: ''
         }
     }
-    addUser = e => {
-    //e.preventDefault();
-    const db = firebase.firestore();
-    db.settings({
-      timestampsInSnapshots: true
-    });
-    const userRef = db.collection('users').add({
-      fname: this.state.fname,
-      lname: this.state.lname,
-      email: this.state.email,
-      //created: firebase.timestamp.now()
-    }).then(docRef => {
-      //this.setState({id: docRef.id})
-      //console.log("Document written with ID: ", this.state.id);
-  })
-  .catch(error => console.error("Error: ", error))
-
-  };
 
     handleChange = (event) => { //Changes State of an Object
         event.preventDefault()
@@ -46,22 +28,12 @@ class Join extends Component {
         })
     }
 
-    submit = () => {
+    submit = async () => {
         const alphaNumeric = '^[a-zA-Z0-9 .\'?!@,-]*$';
         this.setState({fname_error: '', lname_error: '', email_error: ''});
-        const db = firebase.firestore();
-        let users = db.collection('users');
+        const data = await firebaseCommand.findUser("email", this.state.email);
+        console.log(data.length);
         var valid = true;
-        users.where('email', '==', this.state.email).get().then(snapshot => {   //Needs to be fixed
-            if (snapshot.empty) {
-                console.log('No matching documents.');
-            }
-            else {
-                this.setState({email_error: "Email Exists"});  
-            }
-            valid = false;
-        });
-
         
         if (!this.state.fname.match(alphaNumeric) || this.state.fname.length > 50 || !this.state.fname){
             this.setState({fname_error: "Invalid First Name"});
@@ -75,14 +47,17 @@ class Join extends Component {
             this.setState({email_error: "Invalid Email"});
             valid = false;
         }
+        else if (data.length != 0 ){
+            this.setState({email_error: "Email Exists"});
+            valid = false;
+        }
         if (!this.state.username.match(alphaNumeric) || this.state.username.length > 50 || !this.state.username){
             this.setState({username_error: "Invalid Username"});
             valid = false;
         }
-        console.log(this.state.email_error);
 
         if (valid){
-            console.log(firebaseCommand.getUser())
+            firebaseCommand.addUser(this.state);
             alert('Success');
         }
         else {

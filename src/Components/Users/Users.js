@@ -2,29 +2,33 @@ import React, { Component } from 'react';
 import './Users.css';
 import { render } from '@testing-library/react';
 
+let firebaseCommand = require('../Database/Firestore.js');
+
 class Users extends Component {
   state = {
-    results: [],
+    results: null,
   };
 
   async componentDidMount() { //Fetches the data from the api
-    const url = 'https://randomuser.me/api/';
+    const data = await firebaseCommand.getUser();
+    const keys = Object.keys(data)
 
-    fetch(url)
-    .then(response => response.json())    // one extra step
-    .then(data => {
-      console.log(data) 
-      this.setState({results: data})
-    })
-    .catch(error => console.error(error));
-
+    var code = "<div class=\"data\">"
+    for (var i = 0; i < data.length; i++) {
+      var data_key = keys[i];
+      if (data[data_key].username){
+         code += "<div class=\"user\">" + data[data_key].username + "</div>";
+      }
+    }
+    code += "</div>"
+    this.setState({ results: code })
   }
 
   render() {
       return (
       <React.Fragment>
         <div> Users</div>
-
+        <div dangerouslySetInnerHTML={{ __html: this.state.results }} />
       </React.Fragment>
       );
     }

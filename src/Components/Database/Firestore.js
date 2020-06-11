@@ -16,7 +16,7 @@ firebase.initializeApp(firebaseConfig);
 firebase.firestore().settings(settings);
 
 const db = firebase.firestore();
-function addUser(e) {
+export function addUser(e) {
   //e.preventDefault();
 
   db.settings({
@@ -32,40 +32,30 @@ function addUser(e) {
     .catch(error => console.error("Error: ", error))
 };
 
-function getUser() {
-  try {
-    const snapshot = db.firestore().collection("users").get();
-    const users = [];
-    snapshot.forEach((doc) => {
-      users.push({
-        id: doc.id,
-        data: doc.data()
-      }
-      )
-    })
-    return JSON.stringify({ db: users});
-  }
-  catch (error) {
-    console.log(error);
-    return null;
-  }
+export async function getUser() {
+    const snapshot = await db.collection('users').get()
+    const documents = [];
+    snapshot.forEach(doc => {
+       documents[doc.id] = doc.data();
+       documents.length++;
+    });
+
+    return documents;
 }
 
-function findUser(field, data){
-  db.where(field, '==', data).get().then(snapshot => {   //Needs to be fixed
-    var valid;
-            if (snapshot.empty) {
-                console.log('No matching documents.');
-            }
-            else {
-                this.setState({email_error: "Email Exists"});  
-            }
-            valid = false;
-        });
+export async function findUser(field, data){
+  console.log(field);
+  console.log(data);
+  const querySnapshot = await db.collection("users").where(field, "==", data).get();
+  console.log(querySnapshot);
+  const documents = [];
+    querySnapshot.forEach(function(doc) {
+        documents[doc.id] = doc.data();
+        documents.length++;
+        console.log(doc.id, " => ", doc.data());
+    });
+    console.log(documents);
+    return documents;
 }
 
 export default firebase;
-module.export = {
-  addUser,
-  getUser
-}
