@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Users.css';
+import './Users.scss';
 import { render } from '@testing-library/react';
 
 let firebaseCommand = require('../Database/Firestore.js');
@@ -27,8 +27,10 @@ class Users extends Component {
   render() {
       return (
       <React.Fragment>
+        <div class="users-container">
         <div> Users</div>
         <div dangerouslySetInnerHTML={{ __html: this.state.results }} />
+        </div>
       </React.Fragment>
       );
     }
