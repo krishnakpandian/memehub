@@ -3,9 +3,9 @@ import './Meme.scss';
 import * as firebase from 'firebase';
 import firestore from '../Database/Firestore';
 import { render } from '@testing-library/react';
-//import storage from '../Database/Firestore';
 
-const storage = firebase.storage();
+
+let firebaseCommand = require('../Database/Firestore');
 
 
 class Meme extends Component {
@@ -13,7 +13,7 @@ class Meme extends Component {
     super(props);
     this.state = {
       image: null,
-      url: "",
+      file: null
     };
   }
 
@@ -21,30 +21,20 @@ class Meme extends Component {
     if (e.target.files[0]){
       const image = e.target.files[0];
       this.setState( () => ({ image })  );
+      this.setState({file: URL.createObjectURL(image)});
     }
   };
 
-  handleClick = () => {
-    
-    const {image} = this.state;
-    const upload = storage.ref(`images/${image.name}`).put(image);
-    
-    upload.on(
-      "state_changed",
-      snapshot => {},
-      error => {
-        console.log(error);
-      },
-      () => {
-       storage
-          .ref("images")
-          .child(image.name)
-          .getDownloadURL()
-          .then(url => {
-              this.setState({url});
-          });
-      }
-    );
+  handleClick = async () => {
+    try {
+      const {image} = this.state;
+      await firebaseCommand.upload(image);
+      this.setState({image: null, file: null});
+      alert("Your Meme Has been Submitted");
+    }
+    catch(error){
+      alert("Your Meme failed to Submit");
+    }
   };
 
   render() {
@@ -56,6 +46,7 @@ class Meme extends Component {
         <button onClick={this.handleClick}> 
           Upload! 
         </button> 
+        <img src={ this.state.file}/>
         </div>
       </React.Fragment>
       );
