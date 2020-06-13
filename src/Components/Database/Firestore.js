@@ -74,4 +74,8 @@ export async function upload(image) {
     );
 }
 
+<<<<<<< HEAD
 export default firebase;
+=======
+export default firebase;
+>>>>>>> 2417f3f6425bd0a344f8eeba0fc18a23c1a0c3bd
