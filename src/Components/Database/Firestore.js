@@ -16,6 +16,8 @@ firebase.initializeApp(firebaseConfig);
 firebase.firestore().settings(settings);
 
 const db = firebase.firestore();
+const storage = firebase.storage();
+
 export function addUser(e) {
   //e.preventDefault();
 
@@ -56,6 +58,20 @@ export async function findUser(field, data){
     });
     console.log(documents);
     return documents;
+}
+
+export async function upload(image) {
+  const upload = storage.ref(`images/${image.name}`).put(image);
+    await upload.on(
+      "state_changed",
+      snapshot => {},
+      error => {
+        console.log(error);
+      },
+      async () => {
+        await storage.ref("images").child(image.name).getDownloadURL();
+      }
+    );
 }
 
 export default firebase;
