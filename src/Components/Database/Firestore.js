@@ -74,8 +74,31 @@ export async function upload(image) {
     );
 }
 
-<<<<<<< HEAD
+export async function getImages() {
+  // create reference to image folder in storage
+  const imagesRef = storage.ref("images");
+  const documents = [];
+  
+
+  // get the references of individual images, then loop through and add to array
+  await imagesRef.listAll().then( async function(result) {
+    for (let i = 0; i < result.items.length; i++) {
+        let imageRef = result.items[i];
+        await imageRef.getDownloadURL().then(function(url) {
+          console.log(url);
+          documents.push(url);
+        }).catch(function(error) {
+          console.log(error);
+        });
+    }
+  }).catch(function(error) {
+    console.log(error);
+  });
+
+  console.log(documents);
+  console.log("getImages finito");
+  return documents;
+   
+}
+
 export default firebase;
-=======
-export default firebase;
->>>>>>> 2417f3f6425bd0a344f8eeba0fc18a23c1a0c3bd
