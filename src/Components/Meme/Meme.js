@@ -13,7 +13,8 @@ class Meme extends Component {
     super(props);
     this.state = {
       image: null,
-      file: null
+      file: null,
+      images: [],
     };
   }
 
@@ -37,6 +38,20 @@ class Meme extends Component {
     }
   };
 
+  renderImage(image) {
+    return (
+      <div>
+        <img src={image} />
+      </div>
+    );
+  }
+
+  async componentDidMount() { //Fetches the data from the api
+    const data = await firebaseCommand.getImages();
+    this.setState({ images: data });
+    console.log("componentDidMount finito");
+  }
+
   render() {
       return (
       <React.Fragment>
@@ -45,8 +60,10 @@ class Meme extends Component {
         <input type="file" onChange={this.handleChange}/> 
         <button onClick={this.handleClick}> 
           Upload! 
-        </button> 
+        </button>
+        <br /> 
         <img src={ this.state.file}/>
+        { this.state.images.map(image => this.renderImage(image))}
         </div>
       </React.Fragment>
       );
