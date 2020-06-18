@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import './Header.scss';
 class Header extends Component {
     render() {
@@ -7,8 +7,11 @@ class Header extends Component {
         <React.Fragment>
           <div class="header-container">
             <header>
+                <div class= "name">
+                  Meme-Hub
+                </div>
                 <Link to="/">Home</Link>
-                <Link to="/about">About</Link>
+                <Link to="/join">Join</Link>
                 <Link to="/users">Users</Link>
                 <Link to="/memes">Memes</Link>
             </header>

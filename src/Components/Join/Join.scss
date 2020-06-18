@@ -1,3 +1,72 @@
 .join-container{
-    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .data {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #4A38F2;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 17px;
+        overflow: wrap;
+        white-space: nowrap;
+        word-wrap: break-word;
+        padding-bottom: 10px;
+        .error {
+            color: red;
+        }
+        input {
+            height: 54px;
+            width: 274px;
+            padding: 0px 10px;
+            font-size: 16px;
+            font-family: "Open Sans", sans-serif;
+            background-color: #f3f3f3;
+            border-radius: 4px;
+            margin-top: 10px;
+            transition: all 250ms ease-in-out;
+            border-color: #4A38F2;
+        }
+        .password {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            overflow: visible;
+            position: relative
+            input {
+                height: 54px;
+                width: 274px;
+                padding: 0px 10px;
+                font-size: 16px;
+                font-family: "Open Sans", sans-serif;
+                background-color: #f3f3f3;
+                border-radius: 4px;
+                margin-top: 10px;
+                transition: all 250ms ease-in-out;
+                border-color: #4A38F2;
+            }
+            img.eye {
+                position: absolute;
+                height:34px;
+                width: 40px;
+                right:40%;
+            }
+        }
+    }
+    button {
+        font-size: 28px;
+        padding: 5px 20px;
+        font-family: "montserrat";
+        color: #3498db;
+        background: none;
+        border: #3498db;
+        border: 1px solid;
+        border-radius: 30px;
+        transition: all 250ms ease-in-out;
+        cursor: pointer;
+        height: 60px;
+        width: 180px;
+    }
 }

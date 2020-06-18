@@ -1,7 +1,6 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import Users from './Components/Users/Users';
 import About from './Components/About/About';
 import Join from './Components/Join/Join';
@@ -15,8 +14,8 @@ function App() {
       <Router>
         <Header/>
         <Switch>
-          <Route path="/about">
-            <About />
+          <Route path="/join">
+            <Join />
           </Route>
           <Route path="/users">
             <Users />
@@ -25,7 +24,7 @@ function App() {
             <Memes />
           </Route>
           <Route path="/">
-            <Join />
+            <About />
           </Route>
         </Switch>
       </Router>

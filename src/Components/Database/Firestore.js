@@ -24,14 +24,9 @@ export function addUser(e) {
   db.settings({
     timestampsInSnapshots: true
   });
-  const userRef = db.collection('users').add({
-    fname: e.fname,
-    lname: e.lname,
-    email: e.email,
-    username: e.username
-    //created: firebase.timestamp.now()
-  })
+  const userRef = db.collection('users').add(e)
     .catch(error => console.error("Error: ", error))
+  return userRef;
 };
 
 export async function getUser() {

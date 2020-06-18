@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import './Meme.scss';
-import * as firebase from 'firebase';
-import firestore from '../Database/Firestore';
-import { render } from '@testing-library/react';
-
 
 let firebaseCommand = require('../Database/Firestore');
 
@@ -41,7 +37,7 @@ class Meme extends Component {
   renderImage(image) {
     return (
       <div>
-        <img src={image} />
+        <img src={image} alt="error"/>
       </div>
     );
   }
@@ -62,8 +58,9 @@ class Meme extends Component {
           Upload! 
         </button>
         <br /> 
-        <img src={ this.state.file}/>
-        { this.state.images.map(image => this.renderImage(image))}
+        <img src={ this.state.file} alt = "error"/>
+        
+        { this.state.images.map(image => this.renderImage(image))} 
         </div>
       </React.Fragment>
       );
