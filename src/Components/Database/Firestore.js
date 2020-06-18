@@ -95,5 +95,17 @@ export async function getImages() {
   return documents;
    
 }
+// add is 1,2,3
+// 1 means delete all fields and replace all fields with new fields
+// 2 means just add additional fields to the current object
+// 3 means change fields that exist already
+
+export async function updateUser(user, data, modify){
+  
+  await admin.firestore().collection('users').doc(user).update(data);
+
+}
+
+
 
 export default firebase;
