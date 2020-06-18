@@ -102,7 +102,7 @@ export async function getImages() {
 
 export async function updateUser(user, data, modify){
   
-  await admin.firestore().collection('users').doc(user).update(data);
+  //await admin.firestore().collection('users').doc(user).update(data);
 
 }
 
