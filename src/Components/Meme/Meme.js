@@ -11,6 +11,7 @@ class Meme extends Component {
       image: null,
       file: null,
       images: [],
+      isLoading: true,
     };
   }
 
@@ -42,11 +43,14 @@ class Meme extends Component {
     );
   }
 
-  async componentDidMount() { //Fetches the data from the api
+  async componentDidMount() { //Fetches the data from the api    
     const data = await firebaseCommand.getImages();
     this.setState({ images: data });
     console.log("componentDidMount finito");
+    this.setState({isLoading: false});
   }
+
+  
 
   render() {
       return (
@@ -59,7 +63,9 @@ class Meme extends Component {
         </button>
         <br /> 
         <img src={ this.state.file} alt = "error"/>
-        
+
+        {this.state.isLoading ?  <div class="loader"></div>  : <div></div>}
+
         { this.state.images.map(image => this.renderImage(image))} 
         </div>
       </React.Fragment>
