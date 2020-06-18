@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import * as firebase from 'firebase';
-import firestore from '../Database/Firestore';
+import eye_close from '../Assets/eye_unlock.png';
+import eye_open from '../Assets/eye_lock.png';
 import './Join.scss';
 
 let firebaseCommand = require('../Database/Firestore.js');
+let passwordHash = require('password-hash');
 
 class Join extends Component {
     constructor(props) {
@@ -13,11 +14,17 @@ class Join extends Component {
             lname: '',
             email: '',
             username: '',
+            password: '',
             fname_error: '',
             lname_error: '',
             email_error: '',
-            username_error: ''
+            username_error: '',
+            password_error: '',
+            hidden: true,
         }
+        this.submit = this.submit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.toggleShow = this.toggleShow.bind(this);
     }
 
     handleChange = (event) => { //Changes State of an Object
@@ -32,7 +39,6 @@ class Join extends Component {
         const alphaNumeric = '^[a-zA-Z0-9 .\'?!@,-]*$';
         this.setState({fname_error: '', lname_error: '', email_error: ''});
         const data = await firebaseCommand.findUser("email", this.state.email);
-        console.log(data.length);
         var valid = true;
         
         if (!this.state.fname.match(alphaNumeric) || this.state.fname.length > 50 || !this.state.fname){
@@ -55,14 +61,28 @@ class Join extends Component {
             this.setState({username_error: "Invalid Username"});
             valid = false;
         }
-
+        if (!this.state.password.match(alphaNumeric) || this.state.password.length > 50 || !this.state.password){
+            this.setState({password_error: "Invalid Password"});
+            valid = false;
+        }       
         if (valid){
-            firebaseCommand.addUser(this.state);
+            const userData = {
+                fname: this.state.fname,
+                lname: this.state.lname,
+                email: this.state.email,
+                username: this.state.username,
+                password: passwordHash.generate(this.state.password)
+            }
+            firebaseCommand.addUser(userData);
             alert('Success');
         }
         else {
             alert("Error Submitting Data");
         }
+    }
+    
+    toggleShow() {
+        this.setState({ hidden: !this.state.hidden });
     }
 
     render() {
@@ -79,7 +99,7 @@ class Join extends Component {
                         type="text"
                         name="fname"
                         value={this.state.fname}
-                        onChange={this.handleChange.bind(this)}
+                        onChange={this.handleChange}
                         placeholder="First Name"
                         maxlength="100"
                     />
@@ -94,7 +114,7 @@ class Join extends Component {
                         type="text"
                         name="lname"
                         value={this.state.lname}
-                        onChange={this.handleChange.bind(this)}
+                        onChange={this.handleChange}
                         placeholder="Last Name"
                         maxlength="100"
                     />
@@ -109,7 +129,7 @@ class Join extends Component {
                         type="text"
                         name="email"
                         value={this.state.email}
-                        onChange={this.handleChange.bind(this)}
+                        onChange={this.handleChange}
                         placeholder="Email"
                         maxlength="100"
                     />
@@ -124,10 +144,27 @@ class Join extends Component {
                     type="text"
                     name="username"
                     value={this.state.username}
-                    onChange={this.handleChange.bind(this)}
+                    onChange={this.handleChange}
                     placeholder="username"
                     maxlength="100"
                 />
+            </div>
+            <div class="data">
+                Password
+                <div class= "error">
+                    {this.state.password_error}
+                </div>
+                <input
+                    class="medium"
+                    type={this.state.hidden ? "password" : "text"}
+                    name="password"
+                    value={this.state.password}
+                    onChange={this.handleChange}
+                    placeholder="password"
+                    maxlength="100"
+                />
+                { this.state.hidden && <img src =  { eye_open } onClick={this.toggleShow} alt ="error"/> }
+                { !this.state.hidden && <img src =  { eye_close } onClick={this.toggleShow} alt ="error"/> }
             </div>
             <button className="Submit" onClick={this.submit}>Submit App</button>
             </div>

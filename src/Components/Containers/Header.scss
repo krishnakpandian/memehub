@@ -1,3 +1,14 @@
 .header-container{
-    
+    header {
+        display: flex;
+        align-items: center;
+        .name {
+            font-size: 40px;
+            color: white;
+        }
+        a {
+            text-decoration: none;
+            font-size: 24px;
+        }
+    }
 }

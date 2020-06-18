@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './Users.scss';
-import { render } from '@testing-library/react';
 
 let firebaseCommand = require('../Database/Firestore.js');
 
@@ -13,14 +12,13 @@ class Users extends Component {
     const data = await firebaseCommand.getUser();
     const keys = Object.keys(data)
 
-    var code = "<div class=\"data\">"
+    var code = ""
     for (var i = 0; i < data.length; i++) {
       var data_key = keys[i];
       if (data[data_key].username){
          code += "<div class=\"user\">" + data[data_key].username + "</div>";
       }
     }
-    code += "</div>"
     this.setState({ results: code })
   }
 
@@ -28,7 +26,7 @@ class Users extends Component {
       return (
       <React.Fragment>
         <div class="users-container">
-        <div> Users</div>
+        <div class= "title"> Users</div>
         <div dangerouslySetInnerHTML={{ __html: this.state.results }} />
         </div>
       </React.Fragment>
