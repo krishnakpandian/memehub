@@ -57,12 +57,12 @@ class Meme extends Component {
       <React.Fragment>
        <div class="meme-container">
         <div> Hello World</div>
-        <input type="file" onChange={this.handleChange}/> 
+        <input type="file" onChange={this.handleChange} accept ="image/*"/> 
         <button onClick={this.handleClick}> 
           Upload! 
         </button>
         <br /> 
-        <img src={ this.state.file} alt = "error"/>
+        {this.state.file && <img src={ this.state.file} alt = "error"/> }
 
         {this.state.isLoading ?  <div class="loader"></div>  : <div></div>}
 
