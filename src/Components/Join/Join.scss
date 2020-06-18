@@ -69,4 +69,30 @@
         height: 60px;
         width: 180px;
     }
+    #password {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        overflow: visible;
+        position: relative;
+    }
+    #input {
+        height: 54px;
+        width: 274px;
+        padding: 0px 10px;
+        font-size: 16px;
+        font-family: "Open Sans", sans-serif;
+        background-color: #f3f3f3;
+        border-radius: 4px;
+        margin-top: 10px;
+        transition: all 250ms ease-in-out;
+        border-color: #4A38F2;
+    }
+    #img {
+        position:absolute;
+        bottom:5px;
+        right:5px;
+        width:34px;
+        height:40px;
+    }
 }

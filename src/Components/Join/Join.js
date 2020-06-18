@@ -154,19 +154,21 @@ class Join extends Component {
                 <div class= "error">
                     {this.state.password_error}
                 </div>
-                <div class = "password">
-                <input
-                    class="medium"
-                    type={this.state.hidden ? "password" : "text"}
-                    name="password"
-                    value={this.state.password}
-                    onChange={this.handleChange}
-                    placeholder="password"
-                    maxlength="100"
-                />
-                { !this.state.hidden && <img class ="eye" src =  { eye_open } onClick={this.toggleShow} alt ="error"/> }
-                { this.state.hidden && <img class ="eye" src =  { eye_close } onClick={this.toggleShow} alt ="error"/> }
-            
+                <div class = "password" id="password">
+                    
+                    <input
+                        class="medium"
+                        type={this.state.hidden ? "password" : "text"}
+                        name="password"
+                        value={this.state.password}
+                        onChange={this.handleChange}
+                        placeholder="password"
+                        maxlength="100"
+                        id="input"
+                    />
+                    { !this.state.hidden && <img id = "img" class ="eye" src =  { eye_open } onClick={this.toggleShow} alt ="error"/> }
+                    { this.state.hidden && <img id = "img" class ="eye" src =  { eye_close } onClick={this.toggleShow} alt ="error"/> }
+                    
                 </div>
             </div>
             <button className="Submit" onClick={this.submit}>Submit App</button>
