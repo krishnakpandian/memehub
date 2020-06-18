@@ -69,9 +69,11 @@ class Join extends Component {
         return (
             <React.Fragment>
             <div class="join-container">
-                <label>
+                <div class="data">
                     First Name
-                    {this.state.fname_error}
+                    <div class= "error">
+                        {this.state.fname_error}
+                    </div>
                     <input
                         class="medium"
                         type="text"
@@ -81,10 +83,12 @@ class Join extends Component {
                         placeholder="First Name"
                         maxlength="100"
                     />
-                </label>
-                <label>
+                </div>
+                <div class="data">
                     Last Name
-                    {this.state.lname_error}
+                    <div class= "error">
+                        {this.state.lname_error}
+                    </div>
                  <input
                         class="medium"
                         type="text"
@@ -94,10 +98,12 @@ class Join extends Component {
                         placeholder="Last Name"
                         maxlength="100"
                     />
-                </label>
-                <label>
+                </div>
+                <div class="data">
                     Email
-                    {this.state.email_error}
+                    <div class= "error">
+                        {this.state.email_error}
+                    </div>
                     <input
                         class="medium"
                         type="text"
@@ -107,10 +113,12 @@ class Join extends Component {
                         placeholder="Email"
                         maxlength="100"
                     />
-                </label>
-                <label>
+                </div>
+                <div class="data">
                 Username
-                {this.state.username_error}
+                <div class= "error">
+                    {this.state.username_error}
+                </div>
                 <input
                     class="medium"
                     type="text"
@@ -120,7 +128,7 @@ class Join extends Component {
                     placeholder="username"
                     maxlength="100"
                 />
-            </label>
+            </div>
             <button className="Submit" onClick={this.submit}>Submit App</button>
             </div>
             </React.Fragment>
