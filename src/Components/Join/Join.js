@@ -154,6 +154,7 @@ class Join extends Component {
                 <div class= "error">
                     {this.state.password_error}
                 </div>
+                <div class = "password">
                 <input
                     class="medium"
                     type={this.state.hidden ? "password" : "text"}
@@ -163,8 +164,10 @@ class Join extends Component {
                     placeholder="password"
                     maxlength="100"
                 />
-                { this.state.hidden && <img src =  { eye_open } onClick={this.toggleShow} alt ="error"/> }
-                { !this.state.hidden && <img src =  { eye_close } onClick={this.toggleShow} alt ="error"/> }
+                { !this.state.hidden && <img class ="eye" src =  { eye_open } onClick={this.toggleShow} alt ="error"/> }
+                { this.state.hidden && <img class ="eye" src =  { eye_close } onClick={this.toggleShow} alt ="error"/> }
+            
+                </div>
             </div>
             <button className="Submit" onClick={this.submit}>Submit App</button>
             </div>
