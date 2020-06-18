@@ -6,6 +6,7 @@ let firebaseCommand = require('../Database/Firestore.js');
 class Users extends Component {
   state = {
     results: null,
+    isLoading: true,
   };
 
   async componentDidMount() { //Fetches the data from the api
@@ -19,6 +20,7 @@ class Users extends Component {
          code += "<div class=\"user\">" + data[data_key].username + "</div>";
       }
     }
+    this.setState({isLoading: false});
     this.setState({ results: code })
   }
 
@@ -27,6 +29,7 @@ class Users extends Component {
       <React.Fragment>
         <div class="users-container">
         <div class= "title"> Users</div>
+        {this.state.isLoading ?  <div class="loader"></div>  : <div></div>}
         <div dangerouslySetInnerHTML={{ __html: this.state.results }} />
         </div>
       </React.Fragment>
