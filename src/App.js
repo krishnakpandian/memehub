@@ -1,21 +1,68 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
 import Users from './Components/Users/Users';
 import About from './Components/About/About';
 import Join from './Components/Join/Join';
 import Header from './Components/Containers/Header';
 import Footer from './Components/Containers/Footer';
 import Memes from './Components/Meme/Meme';
+import { createHashHistory } from 'history'
 
-function App() {
+
+const initial = {
+  isLoggedIn: false,
+  fname: '',
+  lname: '',
+  email: '',
+  username: '',
+  password: ''
+}
+
+class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = initial;
+    this.logOut = this.logOut.bind(this);
+    this.logIn = this.logIn.bind(this);
+    this.reDirect = this.reDirect.bind(this);
+  }
+
+  logOut(){
+    this.setState(initial);
+  }
+  logIn(obj){
+    this.setState({isLoggedIn: true});
+    this.setState(obj);
+  }
+  reDirect(){
+    // const history = createHashHistory();
+    // history.push('/');
+    // browserHistory.push('/');
+  }
+  render () {
   return (
     <div className="App">
       <Router>
-        <Header/>
+        <Header 
+          isLoggedIn = {this.state.isLoggedIn} 
+          fname = {this.state.fname} 
+          lname = {this.state.lname} 
+          logOut = {this.logOut}
+        />
         <Switch>
-          <Route path="/join">
-            <Join />
+          <Route path="/join" >
+            {this.isLoggedIn && <Redirect to={{pathname: "/", state: { from: '/join' }}}/> }
+            <Join 
+            isLoggedIn = {this.state.isLoggedIn} 
+            fname = {this.state.fname} 
+            lname = {this.state.lname} 
+            logIn = {this.logIn} 
+            email = {this.state.email}
+            username = {this.state.username}
+            password = {this.state.password}
+            reDirect = {this.reDirect}
+            />
           </Route>
           <Route path="/users">
             <Users />
@@ -31,6 +78,7 @@ function App() {
       <Footer/>
     </div>
   );
+  }
 }
 
 export default App;

@@ -2,6 +2,9 @@ import React, {Component} from 'react'
 import { Link } from "react-router-dom";
 import './Header.scss';
 class Header extends Component {
+    constructor(props){
+      super(props);
+    }
     render() {
       return (
         <React.Fragment>
@@ -11,9 +14,15 @@ class Header extends Component {
                   Meme-Hub
                 </div>
                 <Link to="/">Home</Link>
-                <Link to="/join">Join</Link>
+                { !this.props.isLoggedIn && <Link to="/join">Join</Link> }
                 <Link to="/users">Users</Link>
                 <Link to="/memes">Memes</Link>
+                { this.props.isLoggedIn && <div class= "user">
+                  {this.props.fname} {this.props.lname}
+                </div> }
+                {
+                  this.props.isLoggedIn && <button onClick={this.props.logOut}>Logout</button>
+                }
             </header>
             </div>
         </React.Fragment>

@@ -74,7 +74,14 @@ class Join extends Component {
                 password: passwordHash.generate(this.state.password)
             }
             firebaseCommand.addUser(userData);
-            alert('Success');
+            this.props.logIn({
+                fname: this.state.fname,
+                lname: this.state.lname,
+                email: this.state.email,
+                username: this.state.username,
+                password: this.state.password
+            });
+            this.props.reDirect();
         }
         else {
             alert("Error Submitting Data");
