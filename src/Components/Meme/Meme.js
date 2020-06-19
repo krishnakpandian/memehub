@@ -26,11 +26,16 @@ class Meme extends Component {
   handleClick = async () => {
     try {
       const {image} = this.state;
-      await firebaseCommand.upload(image);
+      await firebaseCommand.upload(image, {
+      customMetadata : {
+      'user': this.props.username
+      }
+      });
       this.setState({image: null, file: null});
       alert("Your Meme Has been Submitted");
     }
     catch(error){
+      console.log(error);
       alert("Your Meme failed to Submit");
     }
   };
@@ -46,7 +51,6 @@ class Meme extends Component {
   async componentDidMount() { //Fetches the data from the api    
     const data = await firebaseCommand.getImages();
     this.setState({ images: data });
-    console.log("componentDidMount finito");
     this.setState({isLoading: false});
   }
 
@@ -58,7 +62,7 @@ class Meme extends Component {
        <div class="meme-container">
         <div> Hello World</div>
         <input type="file" onChange={this.handleChange} accept ="image/*"/> 
-        <button onClick={this.handleClick}> 
+        <button onClick={this.handleClick} disabled = {!this.props.isLoggedIn}> 
           Upload! 
         </button>
         <br /> 

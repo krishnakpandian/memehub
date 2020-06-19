@@ -24,7 +24,6 @@ class Join extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.toggleShow = this.toggleShow.bind(this);
         this.alternate = this.alternate.bind(this);
-        this.setLoginInfo = this.setLoginInfo.bind(this);
     }
 
     handleChange = (event) => { //Changes State of an Object
@@ -41,10 +40,6 @@ class Join extends Component {
 
     alternate() {
         this.setState({ isSignup: !this.state.isSignup });
-    }
-
-    setLoginInfo(userInfo){
-        this.setState(userInfo);
     }
 
     render() {
@@ -68,6 +63,7 @@ class Join extends Component {
             toggleShow = {this.toggleShow}
             alternate = {this.alternate}
             reDirect = {this.props.reDirect}
+            logIn = {this.props.logIn}
             />
             }
 
@@ -82,7 +78,7 @@ class Join extends Component {
             handleChange = {this.handleChange}
             toggleShow = {this.toggleShow}
             alternate = {this.alternate}
-            setLoginInfo = {this.setLoginInfo}
+            logIn = {this.props.logIn}
             />}
 
             </React.Fragment>

@@ -78,7 +78,7 @@ class Signup extends Component {
                         value={this.props.fname}
                         onChange={this.props.handleChange}
                         placeholder="First Name"
-                        maxlength="100"
+                        maxLength="100"
                     />
                 </div>
                 <div class="data">
@@ -93,7 +93,7 @@ class Signup extends Component {
                         value={this.props.lname}
                         onChange={this.props.handleChange}
                         placeholder="Last Name"
-                        maxlength="100"
+                        maxLength="100"
                     />
                 </div>
                 <div class="data">
@@ -108,7 +108,7 @@ class Signup extends Component {
                         value={this.props.email}
                         onChange={this.props.handleChange}
                         placeholder="Email"
-                        maxlength="100"
+                        maxLength="100"
                     />
                 </div>
                 <div class="data">
@@ -123,7 +123,7 @@ class Signup extends Component {
                     value={this.props.username}
                     onChange={this.props.handleChange}
                     placeholder="username"
-                    maxlength="100"
+                    maxLength="100"
                 />
             </div>
             <div class="data">
@@ -140,7 +140,7 @@ class Signup extends Component {
                         value={this.props.password}
                         onChange={this.props.handleChange}
                         placeholder="password"
-                        maxlength="100"
+                        maxLength="100"
                         id="input"
                     />
                     { !this.props.hidden && <img id = "img" class ="eye" src =  { eye_open } onClick={this.props.toggleShow} alt ="error"/> }

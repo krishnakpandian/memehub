@@ -69,7 +69,10 @@ class App extends Component {
             <Users />
           </Route>
           <Route path="/memes">
-            <Memes />
+            <Memes 
+              isLoggedIn = {this.state.isLoggedIn}
+              username = {this.state.username}
+            />
           </Route>
           <Route path="/">
             <About />

@@ -10,13 +10,25 @@ class Login extends Component {
         super(props);
         this.LoginValidate = this.LoginValidate.bind(this);
     }
-    LoginValidate() {
-        let docRefs = firebaseCommand.findUser("username", this.props.username);
-        if (docRefs.length > 0) {
-            var user = docRefs[0];
-            if (user.password == passwordHash.generate(this.props.password)){
-                this.props.setLoginInfo(user);
+    async LoginValidate() {
+        let docRefs = await firebaseCommand.findUser("username", this.props.username);
+        console.log(docRefs);
+        var users = Object.keys(docRefs);
+        var onlyUser = users[0];
+        if (users.length > 0) {
+            var user = docRefs[onlyUser];
+            if (passwordHash.verify(this.props.password, user.password)){
+                this.props.logIn({
+                    fname: user.fname,
+                    lname: user.lname,
+                    email: user.email,
+                    username: user.username,
+                    password: this.props.password
+                });
             }
+        }
+        else {
+            alert("Error");
         }
     }
     render() {
@@ -32,7 +44,7 @@ class Login extends Component {
                     value={this.props.username}
                     onChange={this.props.handleChange}
                     placeholder="username"
-                    maxlength="100"
+                    maxLength="100"
                 />
             </div>
             <div class="data">
@@ -45,7 +57,7 @@ class Login extends Component {
                         value={this.props.password}
                         onChange={this.props.handleChange}
                         placeholder="password"
-                        maxlength="100"
+                        maxLength="100"
                         id="input"
                     />
                     { !this.props.hidden && <img id = "img" class ="eye" src =  { eye_open } onClick={this.props.toggleShow} alt ="error"/> }
