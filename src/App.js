@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
+import { browserHistory } from "react-router";
 import Users from './Components/Users/Users';
 import About from './Components/About/About';
 import Join from './Components/Join/Join';
 import Header from './Components/Containers/Header';
 import Footer from './Components/Containers/Footer';
 import Memes from './Components/Meme/Meme';
-import { createHashHistory } from 'history'
+import { createBrowserHistory } from 'history'
 
 
 const initial = {
@@ -36,8 +37,8 @@ class App extends Component {
     this.setState(obj);
   }
   reDirect(){
-    // const history = createHashHistory();
-    // history.push('/');
+    const history = createBrowserHistory();
+    history.push('/');
     // browserHistory.push('/');
   }
   render () {
@@ -51,7 +52,7 @@ class App extends Component {
           logOut = {this.logOut}
         />
         <Switch>
-          <Route path="/join" >
+          <Route exact path="/join" >
             {this.isLoggedIn && <Redirect to={{pathname: "/", state: { from: '/join' }}}/> }
             <Join 
             isLoggedIn = {this.state.isLoggedIn} 
