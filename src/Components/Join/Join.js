@@ -24,6 +24,7 @@ class Join extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.toggleShow = this.toggleShow.bind(this);
         this.alternate = this.alternate.bind(this);
+        this.setLoginInfo = this.setLoginInfo.bind(this);
     }
 
     handleChange = (event) => { //Changes State of an Object
@@ -40,6 +41,10 @@ class Join extends Component {
 
     alternate() {
         this.setState({ isSignup: !this.state.isSignup });
+    }
+
+    setLoginInfo(userInfo){
+        this.setState(userInfo);
     }
 
     render() {
@@ -68,12 +73,16 @@ class Join extends Component {
 
             { !this.state.isSignup && 
             <Login
+            fname = {this.state.fname}
+            lname = {this.state.lname}
+            email = {this.state.email}
             username = {this.state.username}
             password = {this.state.password}
             hidden = {this.state.hidden}
             handleChange = {this.handleChange}
             toggleShow = {this.toggleShow}
             alternate = {this.alternate}
+            setLoginInfo = {this.setLoginInfo}
             />}
 
             </React.Fragment>

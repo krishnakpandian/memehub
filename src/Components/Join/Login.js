@@ -2,9 +2,22 @@ import React, { Component } from 'react';
 import eye_close from '../Assets/eye_unlock.png';
 import eye_open from '../Assets/eye_lock.png';
 
+let firebaseCommand = require('../Database/Firestore.js');
+let passwordHash = require('password-hash');
+
 class Login extends Component {
     constructor(props) {
         super(props);
+        this.LoginValidate = this.LoginValidate.bind(this);
+    }
+    LoginValidate() {
+        let docRefs = firebaseCommand.findUser("username", this.props.username);
+        if (docRefs.length > 0) {
+            var user = docRefs[0];
+            if (user.password == passwordHash.generate(this.props.password)){
+                this.props.setLoginInfo(user);
+            }
+        }
     }
     render() {
         return (
@@ -40,7 +53,7 @@ class Login extends Component {
                     
                 </div>
             </div>
-            <button className="Submit" onClick={this.props.submit}>Submit App</button>
+            <button className="Submit" onClick={this.LoginValidate}>Submit App</button>
             <button className="Submit" onClick={this.props.alternate}>Already have an Account</button>
             </div>
             </React.Fragment>
