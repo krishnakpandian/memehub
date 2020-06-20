@@ -25,16 +25,19 @@ class Login extends Component {
                     username: user.username,
                     password: this.props.password
                 });
+                this.props.reDirect();
+            }
+            else{
+                alert("Invalid Credentials");
             }
         }
         else {
-            alert("Error");
+            alert("No Account Exists");
         }
     }
     render() {
         return (
             <React.Fragment>
-            <div class="join-container">
                 <div class="data">
                 Username
                 <input
@@ -67,7 +70,6 @@ class Login extends Component {
             </div>
             <button className="Submit" onClick={this.LoginValidate}>Submit App</button>
             <button className="Submit" onClick={this.props.alternate}>Already have an Account</button>
-            </div>
             </React.Fragment>
         );
     }

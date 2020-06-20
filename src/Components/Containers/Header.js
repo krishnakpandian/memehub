@@ -14,11 +14,11 @@ class Header extends Component {
                   Meme-Hub
                 </div>
                 <Link to="/">Home</Link>
-                { !this.props.isLoggedIn && <Link to="/join">Join</Link> }
                 <Link to="/users">Users</Link>
                 <Link to="/memes">Memes</Link>
+                { !this.props.isLoggedIn && <Link to="/join">Join</Link> }
                 { this.props.isLoggedIn && <div class= "user">
-                  {this.props.fname} {this.props.lname}
+                  <Link to="/join">{this.props.fname} {this.props.lname}</Link>
                 </div> }
                 {
                   this.props.isLoggedIn && <button onClick={this.props.logOut}>Logout</button>

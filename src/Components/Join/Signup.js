@@ -46,7 +46,9 @@ class Signup extends Component {
                 lname: this.props.lname,
                 email: this.props.email,
                 username: this.props.username,
-                password: passwordHash.generate(this.props.password)
+                password: passwordHash.generate(this.props.password),
+                memeCount: 0,
+                imageURLs: []
             }
             firebaseCommand.addUser(userData);
             this.props.logIn({
@@ -65,7 +67,6 @@ class Signup extends Component {
     render() {
         return (
             <React.Fragment>
-            <div class="join-container">
                 <div class="data">
                     First Name
                     <div class= "error">
@@ -150,7 +151,7 @@ class Signup extends Component {
             </div>
             <button className="Submit" onClick={this.submit}>Submit App</button>
             <button className="Submit" onClick={this.props.alternate}>Already have an Application? Login Here</button>
-            </div>
+
             </React.Fragment>
         );
     }

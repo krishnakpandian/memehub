@@ -38,7 +38,7 @@ class App extends Component {
   }
   reDirect(){
     const history = createBrowserHistory();
-    history.push('/');
+    //history.go('/');
     // browserHistory.push('/');
   }
   render () {

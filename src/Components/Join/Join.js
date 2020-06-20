@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Join.scss';
 import Login from './Login';
 import Signup from './Signup';
-
+import Ready from './Ready';
 
 class Join extends Component {
     constructor(props) {
@@ -45,8 +45,8 @@ class Join extends Component {
     render() {
         return (
             <React.Fragment>
-
-            {this.state.isSignup &&
+            <div class= "join-container">
+            {this.state.isSignup && !this.props.isLoggedIn &&
             <Signup
             fname = {this.state.fname}
             lname = {this.state.lname}
@@ -67,7 +67,7 @@ class Join extends Component {
             />
             }
 
-            { !this.state.isSignup && 
+            { !this.state.isSignup && !this.props.isLoggedIn &&
             <Login
             fname = {this.state.fname}
             lname = {this.state.lname}
@@ -79,8 +79,16 @@ class Join extends Component {
             toggleShow = {this.toggleShow}
             alternate = {this.alternate}
             logIn = {this.props.logIn}
+            reDirect = {this.props.reDirect}
             />}
 
+            {this.props.isLoggedIn &&
+            <Ready
+            fname = {this.props.fname}
+            lname = {this.props.lname}
+            username = {this.props.username}
+            />}   
+            </div>
             </React.Fragment>
         );
     }
