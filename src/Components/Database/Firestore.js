@@ -80,7 +80,8 @@ export async function upload(image, username) {
         const snapshot = query.docs[0];
         const ref = snapshot.ref;
         ref.update({
-          imageURLs: firebase.firestore.FieldValue.arrayUnion(imageURL)
+          imageURLs: firebase.firestore.FieldValue.arrayUnion(imageURL),
+          memeCount: firebase.firestore.FieldValue.increment(1)
         });
       }
     );
