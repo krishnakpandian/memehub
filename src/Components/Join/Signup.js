@@ -46,7 +46,9 @@ class Signup extends Component {
                 lname: this.props.lname,
                 email: this.props.email,
                 username: this.props.username,
-                password: passwordHash.generate(this.props.password)
+                password: passwordHash.generate(this.props.password),
+                memeCount: 0,
+                imageURLs: []
             }
             firebaseCommand.addUser(userData);
             this.props.logIn({
@@ -65,7 +67,6 @@ class Signup extends Component {
     render() {
         return (
             <React.Fragment>
-            <div class="join-container">
                 <div class="data">
                     First Name
                     <div class= "error">
@@ -78,7 +79,7 @@ class Signup extends Component {
                         value={this.props.fname}
                         onChange={this.props.handleChange}
                         placeholder="First Name"
-                        maxlength="100"
+                        maxLength="100"
                     />
                 </div>
                 <div class="data">
@@ -93,7 +94,7 @@ class Signup extends Component {
                         value={this.props.lname}
                         onChange={this.props.handleChange}
                         placeholder="Last Name"
-                        maxlength="100"
+                        maxLength="100"
                     />
                 </div>
                 <div class="data">
@@ -108,7 +109,7 @@ class Signup extends Component {
                         value={this.props.email}
                         onChange={this.props.handleChange}
                         placeholder="Email"
-                        maxlength="100"
+                        maxLength="100"
                     />
                 </div>
                 <div class="data">
@@ -123,7 +124,7 @@ class Signup extends Component {
                     value={this.props.username}
                     onChange={this.props.handleChange}
                     placeholder="username"
-                    maxlength="100"
+                    maxLength="100"
                 />
             </div>
             <div class="data">
@@ -140,7 +141,7 @@ class Signup extends Component {
                         value={this.props.password}
                         onChange={this.props.handleChange}
                         placeholder="password"
-                        maxlength="100"
+                        maxLength="100"
                         id="input"
                     />
                     { !this.props.hidden && <img id = "img" class ="eye" src =  { eye_open } onClick={this.props.toggleShow} alt ="error"/> }
@@ -150,7 +151,7 @@ class Signup extends Component {
             </div>
             <button className="Submit" onClick={this.submit}>Submit App</button>
             <button className="Submit" onClick={this.props.alternate}>Already have an Application? Login Here</button>
-            </div>
+
             </React.Fragment>
         );
     }

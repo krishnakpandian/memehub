@@ -38,7 +38,7 @@ class App extends Component {
   }
   reDirect(){
     const history = createBrowserHistory();
-    history.push('/');
+    //history.go('/');
     // browserHistory.push('/');
   }
   render () {
@@ -69,7 +69,10 @@ class App extends Component {
             <Users />
           </Route>
           <Route path="/memes">
-            <Memes />
+            <Memes 
+              isLoggedIn = {this.state.isLoggedIn}
+              username = {this.state.username}
+            />
           </Route>
           <Route path="/">
             <About />

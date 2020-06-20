@@ -55,8 +55,8 @@ export async function findUser(field, data){
     return documents;
 }
 
-export async function upload(image) {
-  const upload = storage.ref(`images/${image.name}`).put(image);
+export async function upload(image, metadata) {
+  const upload = storage.ref(`images/${image.name}`).put(image, metadata);
     await upload.on(
       "state_changed",
       snapshot => {},
