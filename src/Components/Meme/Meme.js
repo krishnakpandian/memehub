@@ -26,11 +26,7 @@ class Meme extends Component {
   handleClick = async () => {
     try {
       const {image} = this.state;
-      await firebaseCommand.upload(image, {
-      customMetadata : {
-      'user': this.props.username
-      }
-      });
+      await firebaseCommand.upload(image, this.props.username);
       this.setState({image: null, file: null});
       alert("Your Meme Has been Submitted");
     }

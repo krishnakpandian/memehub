@@ -55,7 +55,12 @@ export async function findUser(field, data){
     return documents;
 }
 
-export async function upload(image, metadata) {
+export async function upload(image, username) {
+  const metadata = {
+    customMetadata : {
+    'user': username
+    }
+  };
   const upload = storage.ref(`images/${image.name}`).put(image, metadata);
     await upload.on(
       "state_changed",
@@ -64,7 +69,19 @@ export async function upload(image, metadata) {
         console.log(error);
       },
       async () => {
-        await storage.ref("images").child(image.name).getDownloadURL();
+        let imageURL;
+        await storage.ref("images").child(image.name).getDownloadURL().then(function(url) {
+          console.log(url);
+          imageURL = url;
+        }).catch(function(error) {
+          console.log(error);
+        });;
+        const query = await db.collection("users").where('username', "==", username).get();
+        const snapshot = query.docs[0];
+        const ref = snapshot.ref;
+        ref.update({
+          imageURLs: firebase.firestore.FieldValue.arrayUnion(imageURL)
+        });
       }
     );
 }
